@@ -49,6 +49,8 @@
             btnChangeInfo = new Button();
             openFileDialog1 = new OpenFileDialog();
             saveFileDialog1 = new SaveFileDialog();
+            btnSaveToJson = new Button();
+            btnLoadFromJson = new Button();
             SuspendLayout();
             // 
             // label1
@@ -234,11 +236,33 @@
             openFileDialog1.FileName = "openFileDialog1";
             openFileDialog1.FileOk += openFileDialog1_FileOk;
             // 
+            // btnSaveToJson
+            // 
+            btnSaveToJson.Location = new Point(663, 41);
+            btnSaveToJson.Name = "btnSaveToJson";
+            btnSaveToJson.Size = new Size(85, 51);
+            btnSaveToJson.TabIndex = 20;
+            btnSaveToJson.Text = "Сохранить в Json";
+            btnSaveToJson.UseVisualStyleBackColor = true;
+            btnSaveToJson.Click += btnSaveToJson_Click;
+            // 
+            // btnLoadFromJson
+            // 
+            btnLoadFromJson.Location = new Point(777, 41);
+            btnLoadFromJson.Name = "btnLoadFromJson";
+            btnLoadFromJson.Size = new Size(86, 51);
+            btnLoadFromJson.TabIndex = 21;
+            btnLoadFromJson.Text = "Загрузить из Json";
+            btnLoadFromJson.UseVisualStyleBackColor = true;
+            btnLoadFromJson.Click += btnLoadFromJson_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1273, 596);
+            Controls.Add(btnLoadFromJson);
+            Controls.Add(btnSaveToJson);
             Controls.Add(btnChangeInfo);
             Controls.Add(textBoxFile);
             Controls.Add(label3);
@@ -287,5 +311,7 @@
         private Button btnChangeInfo;
         private OpenFileDialog openFileDialog1;
         private SaveFileDialog saveFileDialog1;
+        private Button btnSaveToJson;
+        private Button btnLoadFromJson;
     }
 }

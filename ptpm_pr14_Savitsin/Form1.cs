@@ -1,6 +1,9 @@
+using System.ComponentModel;
 using System.IO;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using System.ComponentModel;
+using System.Text.Json;
 
 namespace ptpm_pr9_Savitsin
 {
@@ -148,7 +151,7 @@ namespace ptpm_pr9_Savitsin
             }
         }
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e) //Лист с именами и фамилиями
-        {}
+        { }
         private void btnSave_Click(object sender, EventArgs e) //Кнопка Сохранить в файл
         {
             error.Text = "";
@@ -173,6 +176,32 @@ namespace ptpm_pr9_Savitsin
                 ClassStudents.LoadFromFile(openFileDialog1.FileName);
                 textBoxFile.Text = saveFileDialog1.FileName;
                 UpdateListBox();
+            }
+        }
+        private void btnSaveToJson_Click(object sender, EventArgs e) //Кнопка сохранить в json
+        {
+            ClassStudents.SaveToJsonFile();
+        }
+
+        private void btnLoadFromJson_Click(object sender, EventArgs e) //Кнопка загрузить из json
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                string file = openFileDialog1.FileName;
+
+                string extension = Path.GetExtension(file).ToLower();
+
+                if (extension == ".json")
+                {
+                    ClassStudents.OpenJsonFile(file);
+                    UpdateListBox();
+                }
+                else
+                {
+                    ClassStudents.LoadFromFile(openFileDialog1.FileName);
+                    textBoxFile.Text = saveFileDialog1.FileName;
+                    UpdateListBox();
+                }
             }
         }
         private string TrueText(string text) //Проверка правильности текста
@@ -259,6 +288,6 @@ namespace ptpm_pr9_Savitsin
             }
         }
         private void openFileDialog1_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
-        {}
+        { }
     }
 }

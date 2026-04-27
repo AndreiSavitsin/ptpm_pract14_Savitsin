@@ -5,12 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Windows.Forms;
+using System.ComponentModel;
+using System.Text.Json;
 
 namespace ptpm_pr9_Savitsin
 {
     internal class ClassStudents
     {
-        static List<ClassStudents> ListStudents = new List<ClassStudents>(); //Лист студентов
+        static List<ClassStudents> ListStudents = new List<ClassStudents>(); //Лист студентов        
 
         string surname;
         string name;
@@ -72,6 +74,21 @@ namespace ptpm_pr9_Savitsin
         {
             return ListStudents[index];
         }
+
+        static public void SaveToJsonFile() //Сериализация
+        {
+            string jsonString = JsonSerializer.Serialize(ListStudents);
+            File.WriteAllText("students.json", jsonString);
+        }
+        static public void OpenJsonFile(string filename) //Десериализация
+        {
+            if (File.Exists(filename))
+            {
+                string jsonString = File.ReadAllText(filename);
+                ListStudents = JsonSerializer.Deserialize<List<ClassStudents>>(jsonString);
+            }
+        }
+
         static public int CountStudents()
         {
             return ListStudents.Count;
